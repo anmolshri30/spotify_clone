@@ -355,5 +355,7 @@ def serve_frontend(path):
     return "Spotify Clone Frontend not built yet. Run 'npm run build' inside frontend/.", 404
 
 if __name__ == '__main__':
-    print("Spotify Clone Audio Backend running on http://127.0.0.1:5000")
-    app.run(host='127.0.0.1', port=5000, debug=False, threaded=True)
+    # Allow port override via environment for packaging scenarios
+    port = int(os.getenv('SPOTIFY_BACKEND_PORT', '5000'))
+    print(f"Spotify Clone Audio Backend running on http://127.0.0.1:{port}")
+    app.run(host='127.0.0.1', port=port, debug=False, threaded=True)
